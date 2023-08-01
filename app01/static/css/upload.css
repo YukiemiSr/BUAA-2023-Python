@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.c{
+  margin-left: 150px;
+  margin-right: 150px;
+  display: flex;
+  /*width: 100%;*/
+  min-height: 92vh;
+  /*background: black;*/
+}
+
+::selection{
+  color: #fff;
+  background: #6990F2;
+}
+.file,
+.zip{
+  position: relative;
+  min-width:300px;
+  height: 430px;
+  width: 50%;
+  background: #fff;
+  border-radius: 5px;
+  padding: 30px;
+  box-shadow: 7px 7px 12px rgba(0,0,0,0.05);
+}
+
+.file .btn,
+.zip .btn{
+    position: absolute;
+    background-color: rgb(49, 204, 89);
+    color: white;
+    bottom: 10px;
+    width: 70px;
+    height: 30px;
+    border: 0px;
+    border-radius: 6px
+}
+.file header,
+.zip header{
+  color: #6990F2;
+  font-size: 27px;
+  font-weight: 600;
+  text-align: center;
+}
+.file form,
+.zip form{
+  height: 167px;
+  width: 450px;
+  display: flex;
+  cursor: pointer;
+  margin: 30px auto;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 5px;
+  border: 2px dashed #6990F2;
+}
+
+
+form :where(i, p){
+  color: #6990F2;
+}
+form i{
+  font-size: 50px;
+}
+form p{
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+section .row{
+  margin-bottom: 10px;
+  background: #E9F0FF;
+  list-style: none;
+  padding: 15px 20px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+section .row i{
+  color: #6990F2;
+  font-size: 30px;
+}
+section .details span{
+  font-size: 14px;
+}
+.progress-area1.row .content,
+.progress-area2.row .content{
+  width: 100%;
+  margin-left: 15px;
+}
+.progress-area1 .details,
+.progress-area2 .details{
+  display: flex;
+  align-items: center;
+  margin-bottom: 7px;
+  justify-content: space-between;
+}
+.progress-area1 .content .progress-bar,
+.progress-area2 .content .progress-bar{
+  height: 6px;
+  width: 100%;
+  margin-bottom: 4px;
+  background: #fff;
+  border-radius: 30px;
+}
+.content .progress-bar .progress{
+  height: 100%;
+  width: 0%;
+  background: #6990F2;
+  border-radius: inherit;
+}
+.uploaded-area1,
+.uploaded-area2{
+  max-height: 80px;
+  overflow-y: scroll;
+}
+.uploaded-area1.onprogress,
+.uploaded-area2.onprogress{
+  max-height: 150px;
+}
+.uploaded-area1::-webkit-scrollbar,
+.uploaded-area2::-webkit-scrollbar{
+  width: 0px;
+}
+.uploaded-area1 .row .content,
+.uploaded-area2 .row .content{
+  display: flex;
+  align-items: center;
+}
+.uploaded-area1 .row .details,
+.uploaded-area2 .row .details{
+  display: flex;
+  margin-left: 15px;
+  flex-direction: column;
+}
+.uploaded-area1 .row .details .size,
+.uploaded-area2 .row .details .size{
+  color: #404040;
+  font-size: 11px;
+}
+.uploaded-area1 i.fa-check,
+.uploaded-area2 i.fa-check{
+  font-size: 16px;
+}
+

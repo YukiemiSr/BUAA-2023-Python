@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>upload</title>
+    <link rel="stylesheet" href="../static/css/upload.css">
+    <link rel="stylesheet" href="../static/css/navigation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body>
+
+<!--导航栏-->
+<div class="menu">
+    <div class="box">
+        <div class="left">
+                <span class="item">
+                    <img class="logo" src="../static/img/logo.jpeg">
+                </span>
+            <span class="item"><a href="/index/">主页</a></span>
+            <span class="item"><a href="/groups/">群组</a></span>
+            <span class="item"><a href="/bank/">题库</a></span>
+            <span class="item"><a href="/list/">题单</a></span>
+            <span class="item"><a class="active" href="/upload/">上传</a></span>
+            <span class="item"><a href="/record/">记录</a></span>
+            <span class="item"><a href="/user/">用户</a></span>
+            <span class="item"><a href="/about/">关于</a></span>
+        </div>
+        <div class="right search">
+            <input type="text" class="searchBox search-btn">
+            <a>
+                <img src="../static/img/search.png" class="icon">
+            </a>
+        </div>
+        <div class="right">
+            <a href="/index/">
+                <img src="../static/user_img/{{ user_info.profile }}" class="right userImg">
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="c">
+    <!--?    上传文件-->
+    <div class="file">
+        <header>上传文件</header>
+        <form class="form1" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <input class="file-input1" type="file" name="file1" hidden>
+            <i class="fas fa-cloud-upload-alt c1" name="icon"></i>
+            <p>Browse File to Upload</p>
+            <button type="submit" class="btn" >提交</button>
+        </form>
+        <section class="progress-area1"></section>
+        <section class="uploaded-area1"></section>
+    </div>
+
+    <div class="zip">
+        <header>上传文件夹</header>
+        <form action="#" class="form2" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <input class="file-input2" type="file" name="file2" multiple="" webkitdirectory="" hidden >
+            <i class="fas fa-cloud-upload-alt c2" name="icon"></i>
+            <p>Browse File to Upload</p>
+            <button type="submit" class="btn">提交</button>
+        </form>
+        <section class="progress-area2"></section>
+        <section class="uploaded-area2"></section>
+    </div>
+</div>
+
+
+<script src="../static/js/upload.js"></script>
+</body>
+</html>

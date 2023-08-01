@@ -1,0 +1,100 @@
+.question{
+    position: relative;
+    margin-left: 200px;
+    margin-right: 200px;
+    /*background-color: black;*/
+}
+
+.content{
+    height: 84vh;
+}
+
+.content .choice{
+    height: 45%;
+}
+
+.content .con{
+    margin: 0 auto;
+    margin-top: -13px;
+    height: 37vh;
+    width: 80%;
+    overflow:auto;
+}
+
+.question .blank{
+    margin-top: 0px;
+}
+
+.question .title{
+    background-color: rgba(110, 126, 138, 1);
+    text-indent: 15px;
+    font-size: 13px;
+    color: white;
+    border-radius: 6px;
+}
+
+.blank{
+    /*text-align: center;*/
+}
+
+.sheet{
+    width: 100%;
+    text-align: center;
+}
+.blank .text{
+    height: 35vh;
+    width: 80%;
+    overflow:auto;
+    border: 1px solid gray;
+    border-radius: 3px;
+    font-size: 20px;
+}
+
+.bottom{
+    position: relative;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    /*background-color: #0dcaf0;*/
+}
+
+.question .bottom .btn{
+    background-color: rgb(49, 204, 89);
+    color: white;
+    width: 70px;
+    height: 30px;
+    border: 0px;
+    right: 20px;
+    border-radius: 6px;
+}
+
+.bottom .last{
+    background-color: rgb(49, 204, 89);
+    border-radius: 6px;
+    position: absolute;
+    text-align: center;
+    left: 15%;
+    bottom: 20px;
+}
+
+.bottom .next{
+    background-color: rgb(49, 204, 89);
+    border-radius: 6px;
+    position: absolute;
+    text-align: center;
+    right: 15%;
+    bottom: 20px;
+}
+
+.bottom .next a button,
+.bottom .last a button
+{
+    background-color: rgb(49, 204, 89);
+    color: white;
+    width: 70px;
+    height: 30px;
+    border: 0px;
+    font-size: 13px;
+    border-radius: 6px;
+}
+

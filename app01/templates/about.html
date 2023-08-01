@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>关于</title>
+    <link rel="stylesheet" href="../static/css/navigation.css">
+    <link rel="stylesheet" href="../static/css/about.css">
+</head>
+
+<body>
+
+<!--导航栏-->
+<div class="menu">
+    <div class="box">
+        <div class="left">
+            <span class="item">
+                <img class="logo" src="../static/img/logo.jpeg">
+            </span>
+            <span class="item"><a href="/index/">主页</a></span>
+            <span class="item"><a href="/groups/">群组</a></span>
+            <span class="item"><a href="/bank/">题库</a></span>
+            <span class="item"><a href="/list/">题单</a></span>
+            <span class="item"><a href="/upload/">上传</a></span>
+            <span class="item"><a href="/record/">记录</a></span>
+            <span class="item"><a href="/user/">用户</a></span>
+            <span class="item"><a class="active" href="/about/">关于</a></span>
+        </div>
+        <div class="right search">
+            <input type="text" class="searchBox search-btn">
+            <a>
+                <img src="../static/img/search.png" class = "icon">
+            </a>
+        </div>
+        <div class="right">
+            <a href="/user/">
+                 <img src="../static/user_img/{{ user_info.profile }}" class = "right userImg">
+            </a>
+        </div>
+    </div>
+</div>
+
+<!--过渡区域-->
+<div class="transitionBar">
+</div>
+
+<!--主体区域-->
+<div class="infoBox">
+    <div class="testBox">
+        <!--信息1-关于:标题-->
+        <div class="head">
+            About
+            <!--标题线-->
+            <div class="line"></div>
+        </div>
+        <!--信息1-关于:内容-->
+        <div class="infoTest">
+            这个网站是Buaa-2023暑期Python程序设计的大作业项目，如果有任何纰漏或者改进的建议，
+            请联系
+            <a href="https://mail.buaa.edu.cn/" target="_blank">21373055@buaa.edu.cn</a>
+        </div>
+        <!--信息2-团队:标题-->
+        <div class="head">
+            Team
+            <!--标题线-->
+            <div class="line"></div>
+        </div>
+        <!--信息2-团队:内容-->
+        <div class="infoTest">
+            本项目由木枫凯，苗汀昕，杨庄毅，张宇骏四人共同完成了网站的制作。
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

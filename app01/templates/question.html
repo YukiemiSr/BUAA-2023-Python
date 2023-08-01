@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>题目</title>
+    <link rel="stylesheet" href="../static/css/navigation.css">
+    <link rel="stylesheet" href="../static/css/question.css">
+    <link rel="stylesheet" href="">
+    <style>
+        #pre_line {
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+
+<!--导航栏-->
+<div class="menu">
+    <div class="box">
+        <div class="left">
+                <span class="item">
+                    <img class="logo" src="../static/img/logo.jpeg">
+                </span>
+            <span class="item"><a href="/index/">主页</a></span>
+            <span class="item"><a href="/groups/">群组</a></span>
+            <span class="item"><a href="/bank/">题库</a></span>
+            <span class="item"><a href="/list/">题单</a></span>
+            <span class="item"><a href="/upload/">上传</a></span>
+            <span class="item"><a href="/record/">记录</a></span>
+            <span class="item"><a href="/user/">用户</a></span>
+            <span class="item"><a href="/about/">关于</a></span>
+        </div>
+        <div class="right search">
+            <input type="text" class="searchBox search-btn">
+            <a>
+                <img src="../static/img/search.png" class="icon">
+            </a>
+        </div>
+        <div class="right">
+            <a href="/index/">
+                <img src="../static/user_img/{{ user_info.profile }}" class="right userImg">
+            </a>
+        </div>
+    </div>
+</div>
+
+<!--问题-->
+<div class="question">
+    <form method="post" name="form_input">
+        {% csrf_token %}
+        <div class="content">
+            <div class="choice">
+                <div class="title">
+                    <h3>题目&nbsp;:&nbsp;{{ q_now.title }}</h3>
+                </div>
+                <div class="outside">
+                    <div class="con" id="pre_line">
+                        {{ q_now.context }}
+                    </div>
+                </div>
+            </div>
+            <div class="blank">
+                {% if show_ans == False %}
+                    <div class="title">
+                        <h3>答题</h3>
+                    </div>
+                    <div class="sheet">
+                        <textarea class="text" name="ans_input"></textarea>
+                    </div>
+                {% else %}
+                    <div class="title">
+                        <h3>答案</h3>
+                    </div>
+                    <div class="sheet">
+                        <h2 style="color: green">正确答案：{{ q_now.answer }}</h2>
+                        {% if correct == 1 %}
+                            <h2 style="color: green">恭喜你，答对啦！</h2>
+                        {% else %}
+                            <h2 style="color: red">你的答案：{{ ans_input }}</h2>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="bottom">
+            <input type="submit" class="btn" value="提交" name="submit">
+            <div class="last">
+                <a href={{ last }}>
+                    <button type="button">上一道题</button>
+                </a>
+            </div>
+            <div class="next">
+                <a href={{ next }}>
+                    <button type="button">下一道题</button>
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

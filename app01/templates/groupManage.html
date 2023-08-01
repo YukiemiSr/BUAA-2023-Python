@@ -1,0 +1,115 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>群组管理</title>
+    <!--引入bootstrap-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap-v3.min.css' %}">
+    <style>
+        .mainbody {
+            margin-top: 20px;
+        }
+
+        .panel {
+            position: relative;
+            height: 605px;
+        }
+
+        .btnGroup {
+            position: absolute;
+            left: 12px;
+            bottom: -15px;
+        }
+
+        .clearAll {
+            position: absolute;
+            right: 22px;
+            bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<!--无管理权限时报错-->
+{% if err > 0 %}
+    <script>
+        {% if err == 1 %}
+            alert("走丢了~没有找到您的群组~")
+            location.href = "/groups/"
+        {% endif %}
+        {% if err == 2 %}
+            alert("您没有操作权限！")
+            location.href = "/groups/"
+        {% endif %}
+    </script>
+{% endif %}
+
+<!--主体部分-->
+<div class="mainbody">
+    <div class="container">
+        <!--展示区域-->
+        <div class="panel panel-info">
+            <!--框标题-->
+            <div class="panel-heading">群组管理</div>
+            <!--表数据-->
+            <div class="panel-body">
+                <div class="bs-example" data-example-id="striped-table">
+                    <table class="table table-hover table-condensed">
+                        <thead class="text-center">
+                        <tr>
+                            <th class="text-center">用户序号</th>
+                            <th class="text-center">用户账号</th>
+                            <th class="text-center">用户昵称</th>
+                            <th class="text-center">最近上线时间</th>
+                            <th class="text-center">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody class="text-center">
+                        <!--注意此处的userList是数据库GroupToUser下的对象-->
+                        {% for user in userList %}
+                            <tr>
+                                <td>{{ user.user_id }}</td>
+                                <td>{{ user.user.account }}</td>
+                                <td>{{ user.user.name }}</td>
+                                <td>{{ user.user.lastLoginTime }}</td>
+                                <td>
+                                    <a href="/groups/{{ user.group_id }}/{{ user.user_id }}/delete">
+                                        删除
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--底部按钮组-->
+            <div class="btnGroup clearfix">
+                <!--分页条-->
+                <div class="pageBar left">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            {{ page_string }}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!--一键清除-->
+            <div class="clearAll right">
+                <a href="/record/{{ now_group.id }}/deleteAll">
+                    <button type="button" class="btn btn-danger">删除群聊</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--jQuery和bootstrap的js引入-->
+<script src="{% static 'js/jquery-3.7.0.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-3.4.1/dist/css/bootstrap.min.css' %}"></script>
+
+</body>
+</html>

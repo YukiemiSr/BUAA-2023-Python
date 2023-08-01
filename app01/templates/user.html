@@ -1,0 +1,295 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>个人信息</title>
+    <link rel="stylesheet" href="{% static 'css/navigation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-v3.min.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+            crossorigin="anonymous"></script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src={% static 'js/echarts.js' %}></script>
+    <style>
+        .leftArea {
+            height: 600px;
+            width: 400px;
+            float: left;
+            border-radius: 30px;
+            border: 1px solid #0dcaf0;
+        }
+
+        .rightArea {
+            height: 400px;
+            width: 800px;
+            float: right;
+        }
+
+        .imageBox {
+            margin: 0 auto;
+            height: 250px;
+            width: 250px;
+        }
+
+        .imageSize {
+            margin-top: 10px;
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+        }
+
+        .leftArea .infoBox {
+            margin-top: 45px;
+            margin-left: 100px;
+            font-size: 12px;
+        }
+
+        .infoBetween {
+            margin-top: -18px;
+        }
+
+        .infoLine {
+            margin-left: 28px;
+        }
+
+        .btnCenter {
+            margin-top: -10px;
+            margin-left: 160px;
+            border: 1px solid darkgrey;
+        }
+
+        {#群组栏#}
+        .groupBox {
+            width: 800px;
+        }
+
+        {#滑块相关#}
+        .groupBody {
+            height: 100px;
+            width: 100%;
+            overflow: auto;
+        }
+
+        .groupBody::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .groupBody::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background: skyblue;
+        }
+
+        .groupBody::-webkit-scrollbar-track {
+            border-radius: 10px;
+            box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.2);
+            background: #eee;
+        }
+
+        .groupCard {
+            height: 60px;
+            width: 380px;
+            margin-top: 5px;
+            margin-right: 5px;
+        }
+
+        .rightArea .chartBox {
+            width: 800px;
+        }
+
+        #userInfo {
+            margin-top: 0px;
+            height: 560px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<!--导航栏-->
+<div class="menu">
+    <div class="box">
+        <div class="left">
+            <span class="item">
+                <img class="logo" src="../static/img/logo.jpeg">
+            </span>
+            <span class="item"><a href="/index/">主页</a></span>
+            <span class="item"><a href="/groups/">群组</a></span>
+            <span class="item"><a href="/bank/">题库</a></span>
+            <span class="item"><a href="/list/">题单</a></span>
+            <span class="item"><a href="/upload/">上传</a></span>
+            <span class="item"><a href="/record/">记录</a></span>
+            <span class="item"><a class="active" href="/user/">用户</a></span>
+            <span class="item"><a href="/about/">关于</a></span>
+        </div>
+        <div class="right search">
+            <input type="text" class="searchBox search-btn">
+            <a>
+                <img src="../static/img/search.png" class="icon">
+            </a>
+        </div>
+        <div class="right">
+            <a href="/user/">
+                <img src="../static/user_img/{{ user_info.profile }}" class="right userImg">
+            </a>
+        </div>
+    </div>
+</div>
+
+<!--主体部分-->
+<div class="mainBoby clearfix">
+    <!--左边区域，放头像和个人信息-->
+    <div class="leftArea clearfix">
+        <!--头像部分-->
+        <div class="imageBox center-block">
+            <a href="/user_edit/">
+                <img class="imageSize" src="../static/user_img/{{ user_info.profile }}">
+            </a>
+        </div>
+        <!--个人信息部分-->
+        <form class="form-horizontal infoBox">
+            <!--信息表单-->
+            <div class="form-group infoBetween">
+                <label class="col-sm-2 control-label">账号</label>
+                <div class="col-sm-8 infoLine">
+                    <p class="form-control-static">{{ user_info.account }}</p>
+                </div>
+            </div>
+            <div class="form-group infoBetween">
+                <label class="col-sm-2 control-label">昵称</label>
+                <div class="col-sm-8 infoLine">
+                    <p class="form-control-static">{{ user_info.name }}</p>
+                </div>
+            </div>
+            <div class="form-group infoBetween">
+                <label class="col-sm-2 control-label">性别</label>
+                <div class="col-sm-8 infoLine">
+                    <p class="form-control-static">
+                        {% if user_info.sex == 1 %}
+                            男
+                        {% elif user_info.sex == 2 %}
+                            女
+                        {% else %}
+                            不详
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            <div class="form-group infoBetween">
+                <label class="col-sm-2 control-label">年龄</label>
+                <div class="col-sm-8 infoLine">
+                    <p class="form-control-static">
+                        {% if user_info.age %}
+                            {{ user_info.age }}
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            <div class="form-group infoBetween">
+                <label class="col-sm-2 control-label">学校</label>
+                <div class="col-sm-8 infoLine">
+                    <p class="form-control-static">{{ user_info.school }}</p>
+                </div>
+            </div>
+            <div class="form-group infoBetween">
+                <label class="col-sm-2 control-label">邮箱</label>
+                <div class="col-sm-8 infoLine">
+                    <p class="form-control-static">{{ user_info.email }}</p>
+                </div>
+            </div>
+            <div class="form-group infoBetween">
+                <label class="col-sm-2 control-label">住址</label>
+                <div class="col-sm-8 infoLine">
+                    <p class="form-control-static">{{ user_info.home }}</p>
+                </div>
+            </div>
+            <div class="form-group infoBetween">
+                <label class="col-sm-2 control-label">签名</label>
+                <div class="col-sm-8 infoLine">
+                    <p class="form-control-static">{{ user_info.name }}</p>
+                </div>
+            </div>
+        </form>
+        <!--编辑按钮-->
+        <div class="btn-group btnCenter" role="group" aria-label="...">
+            <a href="/user_edit/">
+                <button type="button" class="btn btn-default">
+                    <img src="../static/img/pencil-square.svg">
+                </button>
+            </a>
+            <a href="/user_edit/">
+                <button type="button" class="btn btn-default">
+                    编辑信息
+                </button>
+            </a>
+        </div>
+    </div>
+    <!--右边区域,放置能力图表-->
+    <div class="rightArea">
+        <div class="clearfix">
+            <!--统计信息-->
+            <div class="panel panel-info chartBox right">
+                <!--框标题-->
+                <div class="panel-heading">个人能力</div>
+                <!--表主体-->
+                <div class="panel-body" id="userInfo"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--表格相关js-->
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('userInfo'));
+    // 指定图表的配置项和数据
+    var option = {
+        legend: {
+            data: ['成长之路'],
+        },
+        radar: {
+            // shape: 'circle',
+            indicator: [
+                {name: '做题数', max: 100},
+                {name: '正确率', max: 100},
+                {name: '登录次数', max: 100},
+                {name: '上传题数', max: 100},
+                {name: '提交次数', max: 100},
+                {name: '发展空间', max: 100}
+            ]
+        },
+        series: [
+            {
+                name: '成长之路',
+                type: 'radar',
+                data: [
+                    {
+                        value: [0, 0, 0, 0, 0, 0],
+                        name: '成长之路'
+                    }
+                ]
+            }
+        ]
+    };
+    // 用ajax从后台获取数据从而更新图表
+    $.ajax({
+            url: "/user/chartInfo/",
+            type: "get",
+            dataType: "JSON",
+            success: function (res) {
+                //更新option
+                if (res.status) {
+                    option.series = res.series
+                    myChart.setOption(option);
+                }
+            }
+        }
+    )
+</script>
+
+<script src="{% static 'js/jquery-3.7.0.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-3.4.1/dist/css/bootstrap.min.css' %}"></script>
+</body>
+</html>

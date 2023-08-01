@@ -1,0 +1,365 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+            crossorigin="anonymous"></script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/bootstrap-v3.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navigation.css' %}">
+    <script src={% static 'js/echarts.js' %}></script>
+    <style>
+        .info {
+            height: 400px;
+            width: 800px;
+        }
+
+        .fortune {
+            height: 50%;
+            width: 100%;
+            margin-top: 10px;
+            background: white;
+        }
+
+        .calender {
+            height: 100%;
+            width: 100%;
+            background: #ffffff;
+        }
+
+        .calender .dayFont {
+            height: 50%;
+            background: none;
+            display: inline-block;
+            width: 20px;
+            vertical-align: top;
+            line-height: 17px;
+            margin-left: 10px;
+            margin-right: 10px;
+            font-weight: bold;
+            margin-top: 10px;
+            color: rgba(5, 67, 16, 0.79) !important;
+        }
+
+        .calender .center {
+            float: left;
+            height: 80%;
+            width: 50%;
+            background: none;
+            margin-top: 10px;
+            display: inline-block;
+            font-size: 78px;
+            vertical-align: top;
+            line-height: 55px;
+            font-weight: bolder;
+            text-align: center;
+            color: rgba(5, 67, 16, 0.79) !important;
+        }
+
+        .fate {
+            width: 100%;
+            height: 50px;
+            background: none;
+            margin-bottom: 50px;
+            text-align: center;
+            vertical-align: top;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+            margin-top: 10px;
+            font-size: 18px;
+            color: rgba(238, 42, 8, 0.79);
+        }
+
+        .announceBox {
+            height: 200px;
+            width: 500px;
+            margin-bottom: 30px;
+
+        }
+
+        .announceBox .announceBody {
+            height: 150px;
+            width: 100%;
+            overflow: auto;
+        }
+
+        .announceText {
+            margin: 0 auto;
+        }
+
+        .info #userInfo {
+            margin-top: -50px;
+            height: 100%;
+            width: 100%;
+        }
+
+        .todayFortune {
+            height: 200px;
+            width: 200px;
+        }
+
+        .recommend {
+            height: 632px;
+            width: 400px;
+        }
+
+        .advertise_Box {
+            margin-top: 10px;
+            height: 90%;
+            width: 100%;
+        }
+
+        .advertise_font {
+            font-size: 18px;
+            font-family: fangsong;
+            text-align: center;
+        }
+
+        .questBox {
+            padding: 1.25rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border-radius: .25rem;
+            border: 1px solid #e9ecef;
+            border-left: 5px solid #f2dede;
+        }
+        .errBox {
+            margin-top: 180px;
+            margin-left:20px;
+            background: none;
+            width:100%;
+            height: 400px;
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<!--导航栏-->
+<div class="menu">
+    <div class="box">
+        <div class="left">
+            <span class="item">
+                <img class="logo" src="../static/img/logo.jpeg">
+            </span>
+            <span class="item"><a class="active" href="/index/">主页</a></span>
+            <span class="item"><a href="/groups/">群组</a></span>
+            <span class="item"><a href="/bank/">题库</a></span>
+            <span class="item"><a href="/list/">题单</a></span>
+            <span class="item"><a href="/upload/">上传</a></span>
+            <span class="item"><a href="/record/">记录</a></span>
+            <span class="item"><a href="/user/">用户</a></span>
+            <span class="item"><a href="/about/">关于</a></span>
+        </div>
+        <div class="right search">
+            <input type="text" class="searchBox search-btn">
+            <a>
+                <img src="../static/img/search.png" class="icon">
+            </a>
+        </div>
+        <div class="right">
+            <a href="/user/">
+                <img src="../static/user_img/{{ user_info.profile }}" class="right userImg">
+            </a>
+        </div>
+    </div>
+</div>
+
+<!--主体部分-->
+<div class="mainBoby clearfix">
+    <!--左侧栏 显示易错推荐-->
+    <div class="clearfix left">
+        <!--易错推荐-->
+        <div class="panel panel-danger recommend">
+            <div class="panel-heading">易错推荐</div>
+            <div class="panel-body">
+            {% if err == 0 %}
+                {% for title in list %}
+                <div class="questBox">
+                    {{ title }}
+                </div>
+               {% endfor %}
+            {% endif %}
+            {% if err == 1 %}
+                <div class = "errBox">
+                请进行更多训练哦
+                </div>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!--右侧栏 主要显示相关信息-->
+    <div class="clearfix right">
+        <!--第一横行 放置日推和公告-->
+        <div class="clearfix">
+            <!--日期和运势-->
+            <div class="panel panel-success todayFortune left">
+                <div class="panel-heading">
+                    今日运势
+                </div>
+                <div class="panel-body fortune">
+                    <div class="calender">
+                        <div class="left dayFont">
+                            {{ month }}
+                        </div>
+                        <div class="center">
+                            {{ day }}
+                        </div>
+                        <div class="right dayFont">
+                            {{ weekday }}
+                        </div>
+                    </div>
+                    <!--运势框-->
+                    <div class="fate">
+                        今日运势: § {{ fortune }} §
+                    </div>
+                </div>
+            </div>
+            <!--公告-->
+            <div class="panel panel-warning announceBox overflow-hidden right">
+                <!--框标题-->
+                <div class="panel-heading">公告</div>
+                <!--公告主体-->
+                <div class="panel-body overflow-hidden">
+                    <div id="carouselExampleIndicators" class="carousel slide announceBody left">
+                        <div class="overflow-hidden carousel-indicators " hidden="hidden">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                    class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                    aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                                    aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner advertise_Box">
+                            <div class="carousel-item active">
+                                <div class="d-block w-100 advertise_font">
+                                    {% for line in first %}
+                                        <div class="announceText">
+                                            {{ line }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="d-block w-100 advertise_font">
+                                    <div class="announceText">
+                                        {% for line in second %}
+                                            <div class="announceText">
+                                                {{ line }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="d-block w-100 advertise_font">
+                                    <div class="announceText">
+                                        {% for line in third %}
+                                            <div class="announceText">
+                                                {{ line }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--左右滑动按钮-->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true">
+                    <img src="../static/img/chevron-left.svg">
+                </span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true">
+                    <img src="../static/img/chevron-right.svg">
+                </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--第二横行 放置信息-->
+        <div class="clearfix">
+            <!--统计信息-->
+            <div class="panel panel-info info right">
+                <!--框标题-->
+                <div class="panel-heading">统计信息</div>
+                <!--表主体-->
+                <div class="panel-body" id="userInfo"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--表格相关js-->
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('userInfo'));
+    // 配置图表
+    option = {
+        tooltip: {
+            trigger: 'axis',
+            position: function (pt) {
+                return [pt[0], '10%'];
+            }
+        },
+        toolbox: {
+            feature: {
+                dataZoom: {
+                    yAxisIndex: 'none'
+                },
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'time',
+            boundaryGap: false
+        },
+        yAxis: {
+            type: 'value',
+            boundaryGap: [0, '100%']
+        },
+        dataZoom: [
+            {
+                type: 'inside',
+                start: 0,
+                end: 20
+            },
+            {
+                start: 0,
+                end: 20
+            }
+        ],
+        series: []
+    };
+    $.ajax({
+            url: "/index/chartInfo/",
+            type: "get",
+            dataType: "JSON",
+            success: function (res) {
+                //更新option
+                if (res.status) {
+                    //配置数据
+                    option.series = res.series
+                    myChart.setOption(option);
+                }
+            }
+        }
+    )
+</script>
+
+<script src="{% static 'js/jquery-3.7.0.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-3.4.1/dist/css/bootstrap.min.css' %}"></script>
+</body>
+</html>

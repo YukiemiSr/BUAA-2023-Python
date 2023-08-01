@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    background: url(../img/background.png) no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper{
+    width: 450px;
+    height: 420px;
+    border-top: 1px solid rgba(255,255,255,0.5);
+    border-left: 1px solid rgba(255,255,255,0.5);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    border-right: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.wrapper .head {
+    font-size: 30px;
+    margin: 0 auto;
+    color: rgba(0,0,0,0.9);
+    text-align: center;
+    font-weight: bolder;
+}
+
+.wrapper .input-box_1{
+    position: relative;
+    width: 350px;
+    height: 60px;
+    margin: 15px 0;
+    /*background: black;*/
+}
+
+.wrapper .input-box_2{
+    position: relative;
+    width: 350px;
+    height: 60px;
+    /*background: blue;*/
+    margin-top: -5px;
+    margin-bottom: 25px;
+}
+
+.wrapper .error_message{
+    margin-left: 24px;
+    color: red;
+    font-size: 14px;
+}
+
+.wrapper .input-box_1 .icon,
+.wrapper .input-box_2 .icon{
+    color: rgba(0,0,0,01);
+    line-height: 46px;
+}
+
+.wrapper .input-box_1 input:focus {
+    border: 1px solid rgba(232, 160, 28, 1);
+}
+
+.wrapper .input-box_2 input:focus {
+    border: 1px solid rgba(232, 160, 28, 1);
+}
+
+.wrapper .input-box_1 input,
+.wrapper .input-box_2 input{
+    /*box-sizing: border-box;*/
+    font-size: 1em;
+    text-indent: 10px;
+    position: absolute;
+    height: 40px;
+    width: 93.6%;
+    /*background: transparent;*/
+    background: rgba(255,255,255,1);
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.remember-forgot {
+    font-size: .9em;
+    color: black;
+    font-weight: 500;
+    margin: -10px 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remember-forgot label input {
+    accent-color: black;
+    margin-right: 2px;
+}
+
+.btn {
+    width: 100%;
+    height: 45px;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    background: rgb(232, 160, 28, 1);
+    color: rgb(255, 255, 255, 1);
+    margin-top: 35px;
+}
+
+.sign {
+    margin-top: 10px;
+    text-align:center;
+}
+

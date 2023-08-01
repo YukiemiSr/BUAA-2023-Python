@@ -1,0 +1,34 @@
+.transitionBar{
+    height: 10px;
+    background: #f4f4f6;
+}
+
+.infoBox {
+    height: 800px;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+
+.infoBox .head{
+    display: inline-block;
+    font-size: 50px;
+}
+
+.infoBox .line{
+    background: black;
+    height: 5px;
+    width: 100%;
+}
+
+.infoBox .infoTest{
+    margin-top: 10px;
+    font-size: 30px;
+    font-weight: lighter;
+}
+
+.infoBox .testBox{
+    margin-left: 100px;
+    margin-right: 100px;
+    height: 100%;
+}

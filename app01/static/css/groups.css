@@ -1,0 +1,86 @@
+
+/*弹出窗口环节*/
+ /* 遮罩层 */
+  #overlay {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 100;
+    width:1600px;
+    height: 1000px;
+    font-size: 16px;
+    /* IE9以下不支持rgba模式 */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 兼容IE8及以下 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000,endColorstr=#7f000000);
+    display: none;
+  }
+  #overlay1 {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 100;
+    width:1600px;
+    height: 1000px;
+    font-size: 16px;
+    /* IE9以下不支持rgba模式 */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 兼容IE8及以下 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000,endColorstr=#7f000000);
+    display: none;
+  }
+  /* 弹出框主体 */
+  .popup {
+    background-color: #ffffff;
+    max-width: 400px;
+    min-width: 200px;
+    height: 240px;
+    border-radius: 5px;
+    margin-left:600px;
+    margin-top:200px;
+    text-align: center;
+  }
+  /* 弹出框的标题 */
+  .popup_title {
+    height: 40px;
+    line-height: 40px;
+    border-bottom: solid 1px #cccccc;
+  }
+  /* 弹出框的内容 */
+  .popup_content {
+    margin-top:50px;
+    height: 80px;
+    padding: 5px 10px;
+  }
+  /* 弹出框的按钮栏 */
+  .popup_btn {
+    padding-bottom: 10px;
+  }
+  /* 弹出框的按钮 */
+  .popup_btn button {
+    color: #778899;
+    width: 40%;
+    height: 40px;
+    cursor: pointer;
+    border: solid 1px #cccccc;
+    border-radius: 5px;
+    margin: 5px 10px;
+    color: #ffffff;
+    background-color: #337ab7;
+  }
+  .inputLine {
+    float: left;
+    height: 35px;
+    width: 250px;
+}
+ .aa {
+    float: left;
+    height: 30px;
+    width:120px;
+    margin-top:5px;
+}
+
+
+
+
+
